@@ -18,36 +18,36 @@
 ##  Documentation.  ##
 ## ---------------- ##
 
-info_TEXINFOS = %D%/automake.texi %D%/automake-history.texi
-doc_automake_TEXINFOS = %D%/fdl.texi
-doc_automake_history_TEXINFOS = %D%/fdl.texi
+info_TEXINFOS = doc/automake.texi doc/automake-history.texi
+doc_automake_TEXINFOS = doc/fdl.texi
+doc_automake_history_TEXINFOS = doc/fdl.texi
 
 man1_MANS = \
-  %D%/aclocal.1 \
-  %D%/automake.1 \
-  %D%/aclocal-$(APIVERSION).1 \
-  %D%/automake-$(APIVERSION).1
+  doc/aclocal.1 \
+  doc/automake.1 \
+  doc/aclocal-$(APIVERSION).1 \
+  doc/automake-$(APIVERSION).1
 
 $(man1_MANS): $(top_srcdir)/configure.ac
 
 CLEANFILES += $(man1_MANS)
 # XXX: This script should be updated with 'fetch' target.
-EXTRA_DIST += %D%/help2man
+EXTRA_DIST += doc/help2man
 
 update_mans = \
   $(AM_V_GEN): \
-    && $(MKDIR_P) %D% \
-    && ./pre-inst-env $(PERL) $(srcdir)/%D%/help2man --output=$@
+    && $(MKDIR_P) doc \
+    && ./pre-inst-env $(PERL) $(srcdir)/doc/help2man --output=$@
 
-%D%/aclocal.1 %D%/automake.1:
+doc/aclocal.1 doc/automake.1:
 	$(AM_V_GEN): \
-	  && $(MKDIR_P) %D% \
+	  && $(MKDIR_P) doc \
 	  && f=`echo $@ | sed 's|.*/||; s|\.1$$||; $(transform)'` \
 	  && echo ".so man1/$$f-$(APIVERSION).1" > $@
 
-%D%/aclocal-$(APIVERSION).1: $(aclocal_script) lib/Automake/Config.pm
+doc/aclocal-$(APIVERSION).1: $(aclocal_script) lib/Automake/Config.pm
 	$(update_mans) aclocal-$(APIVERSION)
-%D%/automake-$(APIVERSION).1: $(automake_script) lib/Automake/Config.pm
+doc/automake-$(APIVERSION).1: $(automake_script) lib/Automake/Config.pm
 	$(update_mans) automake-$(APIVERSION)
 
 ## ---------------------------- ##
@@ -55,11 +55,11 @@ update_mans = \
 ## ---------------------------- ##
 
 amhello_sources = \
-  %D%/amhello/configure.ac \
-  %D%/amhello/Makefile.am \
-  %D%/amhello/README \
-  %D%/amhello/src/main.c \
-  %D%/amhello/src/Makefile.am
+  doc/amhello/configure.ac \
+  doc/amhello/Makefile.am \
+  doc/amhello/README \
+  doc/amhello/src/main.c \
+  doc/amhello/src/Makefile.am
 
 amhello_configury = \
   aclocal.m4 \
@@ -73,7 +73,7 @@ amhello_configury = \
   src/Makefile.in
 
 dist_noinst_DATA += $(amhello_sources)
-dist_doc_DATA = $(srcdir)/%D%/amhello-1.0.tar.gz
+dist_doc_DATA = $(srcdir)/doc/amhello-1.0.tar.gz
 
 setup_autotools_paths = { \
   ACLOCAL=aclocal-$(APIVERSION) && export ACLOCAL \
@@ -88,9 +88,9 @@ setup_autotools_paths = { \
 
 # We depend on configure.ac so that we regenerate the tarball
 # whenever the Automake version changes.
-$(srcdir)/%D%/amhello-1.0.tar.gz: $(amhello_sources) $(srcdir)/configure.ac
+$(srcdir)/doc/amhello-1.0.tar.gz: $(amhello_sources) $(srcdir)/configure.ac
 	$(AM_V_GEN)tmp=amhello-output.tmp \
-	  && $(am__cd) $(srcdir)/%D%/amhello \
+	  && $(am__cd) $(srcdir)/doc/amhello \
 	  && : Make our	aclocal and automake avaiable before system ones. \
 	  && $(setup_autotools_paths) \
 	  && ( \
