@@ -19,7 +19,7 @@
 ## -------------------------------- ##
 
 contrib_TESTS = \
-  %D%/parallel-tests-html.sh \
-  %D%/parallel-tests-html-recursive.sh \
-  %D%/help-multilib.sh \
-  %D%/multilib.sh
+  contrib/t/parallel-tests-html.sh \
+  contrib/t/parallel-tests-html-recursive.sh \
+  contrib/t/help-multilib.sh \
+  contrib/t/multilib.sh
