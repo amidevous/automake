@@ -18,21 +18,21 @@
 ##  The automake and aclocal scripts.  ##
 ## ----------------------------------- ##
 
-bin_SCRIPTS = %D%/automake %D%/aclocal
+bin_SCRIPTS = bin/automake bin/aclocal
 nodist_noinst_SCRIPTS += \
-  %D%/aclocal-$(APIVERSION) \
-  %D%/automake-$(APIVERSION)
+  bin/aclocal-$(APIVERSION) \
+  bin/automake-$(APIVERSION)
 
 CLEANFILES += \
   $(bin_SCRIPTS) \
-  %D%/aclocal-$(APIVERSION) \
-  %D%/automake-$(APIVERSION)
+  bin/aclocal-$(APIVERSION) \
+  bin/automake-$(APIVERSION)
 
 # Used by maintainer checks and such.
-automake_in = $(srcdir)/%D%/automake.in
-aclocal_in  = $(srcdir)/%D%/aclocal.in
-automake_script = %D%/automake
-aclocal_script  = %D%/aclocal
+automake_in = $(srcdir)/bin/automake.in
+aclocal_in  = $(srcdir)/bin/aclocal.in
+automake_script = bin/automake
+aclocal_script  = bin/aclocal
 
 AUTOMAKESOURCES = $(automake_in) $(aclocal_in)
 TAGS_FILES += $(AUTOMAKESOURCES)
@@ -60,9 +60,9 @@ uninstall-hook:
 
 # These files depend on Makefile so they are rebuilt if $(VERSION),
 # $(datadir) or other do_subst'ituted variables change.
-%D%/automake: %D%/automake.in
-%D%/aclocal: %D%/aclocal.in
-%D%/automake %D%/aclocal: Makefile
+bin/automake: bin/automake.in
+bin/aclocal: bin/aclocal.in
+bin/automake bin/aclocal: Makefile
 	$(AM_V_GEN)rm -f $@ $@-t $@-t2 \
 	  && $(MKDIR_P) $(@D) \
 ## Common substitutions.
@@ -72,12 +72,12 @@ uninstall-hook:
 ## comments, and that is perfectly legit.
 	  && chmod a+x,a-w $@-t && mv -f $@-t $@
 
-%D%/aclocal-$(APIVERSION): %D%/aclocal
+bin/aclocal-$(APIVERSION): bin/aclocal
 	$(AM_V_GEN) rm -f $@; \
-	$(LN) %D%/aclocal $@
+	$(LN) bin/aclocal $@
 
-%D%/automake-$(APIVERSION): %D%/automake
+bin/automake-$(APIVERSION): bin/automake
 	$(AM_V_GEN) rm -f $@; \
-	$(LN) %D%/automake $@
+	$(LN) bin/automake $@
 
 # vim: ft=automake noet
