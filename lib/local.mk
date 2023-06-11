@@ -19,32 +19,32 @@
 ## -------------------------------------------------------------------- ##
 
 dist_pkgvdata_DATA = \
-  %D%/COPYING \
-  %D%/INSTALL \
-  %D%/texinfo.tex
+  lib/COPYING \
+  lib/INSTALL \
+  lib/texinfo.tex
 
 # These must all be executable when installed.  However, if we use
 # _SCRIPTS, then the program transform will be applied, which is not
 # what we want.  So we make them executable by hand.
 dist_script_DATA = \
-  %D%/config.guess \
-  %D%/config.sub \
-  %D%/install-sh \
-  %D%/mdate-sh \
-  %D%/missing \
-  %D%/mkinstalldirs \
-  %D%/ylwrap \
-  %D%/depcomp \
-  %D%/compile \
-  %D%/py-compile \
-  %D%/ar-lib \
-  %D%/test-driver \
-  %D%/tap-driver.sh
+  lib/config.guess \
+  lib/config.sub \
+  lib/install-sh \
+  lib/mdate-sh \
+  lib/missing \
+  lib/mkinstalldirs \
+  lib/ylwrap \
+  lib/depcomp \
+  lib/compile \
+  lib/py-compile \
+  lib/ar-lib \
+  lib/test-driver \
+  lib/tap-driver.sh
 
 install-data-hook:
 	@$(POST_INSTALL)
 	@for f in $(dist_script_DATA); do echo $$f; done \
-	  | sed 's,^%D%/,,' \
+	  | sed 's,^lib/,,' \
 	  | ( st=0; \
 	      while read f; do \
 	        echo " chmod +x '$(DESTDIR)$(scriptdir)/$$f'"; \
@@ -55,7 +55,7 @@ install-data-hook:
 installcheck-local: installcheck-executable-scripts
 installcheck-executable-scripts:
 	@for f in $(dist_script_DATA); do echo $$f; done \
-	  | sed 's,^%D%/,,' \
+	  | sed 's,^lib/,,' \
 	  | while read f; do \
 	      path="$(pkgvdatadir)/$$f"; \
 	      test -x "$$path" || echo $$path; \
