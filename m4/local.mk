@@ -22,43 +22,43 @@ system_acdir = @system_acdir@
 automake_acdir = @automake_acdir@
 
 dist_automake_ac_DATA = \
-  %D%/amversion.m4 \
-  %D%/ar-lib.m4 \
-  %D%/as.m4 \
-  %D%/auxdir.m4 \
-  %D%/cond.m4 \
-  %D%/cond-if.m4 \
-  %D%/depend.m4 \
-  %D%/depout.m4 \
-  %D%/dmalloc.m4 \
-  %D%/extra-recurs.m4 \
-  %D%/gcj.m4 \
-  %D%/init.m4 \
-  %D%/install-sh.m4 \
-  %D%/lead-dot.m4 \
-  %D%/lex.m4 \
-  %D%/lispdir.m4 \
-  %D%/maintainer.m4 \
-  %D%/make.m4 \
-  %D%/missing.m4 \
-  %D%/mkdirp.m4 \
-  %D%/obsolete.m4 \
-  %D%/options.m4 \
-  %D%/python.m4 \
-  %D%/prog-cc-c-o.m4 \
-  %D%/runlog.m4 \
-  %D%/sanity.m4 \
-  %D%/silent.m4 \
-  %D%/strip.m4 \
-  %D%/substnot.m4 \
-  %D%/tar.m4 \
-  %D%/upc.m4 \
-  %D%/vala.m4
+  m4/amversion.m4 \
+  m4/ar-lib.m4 \
+  m4/as.m4 \
+  m4/auxdir.m4 \
+  m4/cond.m4 \
+  m4/cond-if.m4 \
+  m4/depend.m4 \
+  m4/depout.m4 \
+  m4/dmalloc.m4 \
+  m4/extra-recurs.m4 \
+  m4/gcj.m4 \
+  m4/init.m4 \
+  m4/install-sh.m4 \
+  m4/lead-dot.m4 \
+  m4/lex.m4 \
+  m4/lispdir.m4 \
+  m4/maintainer.m4 \
+  m4/make.m4 \
+  m4/missing.m4 \
+  m4/mkdirp.m4 \
+  m4/obsolete.m4 \
+  m4/options.m4 \
+  m4/python.m4 \
+  m4/prog-cc-c-o.m4 \
+  m4/runlog.m4 \
+  m4/sanity.m4 \
+  m4/silent.m4 \
+  m4/strip.m4 \
+  m4/substnot.m4 \
+  m4/tar.m4 \
+  m4/upc.m4 \
+  m4/vala.m4
 
-dist_system_ac_DATA = %D%/acdir/README
+dist_system_ac_DATA = m4/acdir/README
 
 automake_internal_acdir = $(automake_acdir)/internal
-dist_automake_internal_ac_DATA = %D%/internal/ac-config-macro-dirs.m4
+dist_automake_internal_ac_DATA = m4/internal/ac-config-macro-dirs.m4
 
 # We build amversion.m4 here, instead of from config.status,
 # because config.status is rerun each time one of configure's
@@ -67,12 +67,12 @@ dist_automake_internal_ac_DATA = %D%/internal/ac-config-macro-dirs.m4
 # loop otherwise.
 # Use '$(top_srcdir)' for the benefit of non-GNU makes: this is
 # how amversion.m4 appears in our dependencies.
-$(top_srcdir)/%D%/amversion.m4: $(srcdir)/configure.ac \
-                                $(srcdir)/%D%/amversion.in
+$(top_srcdir)/m4/amversion.m4: $(srcdir)/configure.ac \
+                                $(srcdir)/m4/amversion.in
 	$(AM_V_at)rm -f $@-t $@
 	$(AM_V_GEN)in=amversion.in \
-	  && $(do_subst) <$(srcdir)/%D%/amversion.in >$@-t
+	  && $(do_subst) <$(srcdir)/m4/amversion.in >$@-t
 	$(generated_file_finalize)
-EXTRA_DIST += %D%/amversion.in
+EXTRA_DIST += m4/amversion.in
 
 # vim: ft=automake noet
