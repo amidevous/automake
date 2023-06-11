@@ -21,36 +21,36 @@
 perllibdir = $(pkgvdatadir)/Automake
 
 dist_perllib_DATA = \
-  %D%/ChannelDefs.pm \
-  %D%/Channels.pm \
-  %D%/Condition.pm \
-  %D%/Configure_ac.pm \
-  %D%/DisjConditions.pm \
-  %D%/FileUtils.pm \
-  %D%/General.pm \
-  %D%/Getopt.pm \
-  %D%/Item.pm \
-  %D%/ItemDef.pm \
-  %D%/Language.pm \
-  %D%/Location.pm \
-  %D%/Options.pm \
-  %D%/Rule.pm \
-  %D%/RuleDef.pm \
-  %D%/Variable.pm \
-  %D%/VarDef.pm \
-  %D%/Version.pm \
-  %D%/XFile.pm \
-  %D%/Wrap.pm
+  lib/Automake/ChannelDefs.pm \
+  lib/Automake/Channels.pm \
+  lib/Automake/Condition.pm \
+  lib/Automake/Configure_ac.pm \
+  lib/Automake/DisjConditions.pm \
+  lib/Automake/FileUtils.pm \
+  lib/Automake/General.pm \
+  lib/Automake/Getopt.pm \
+  lib/Automake/Item.pm \
+  lib/Automake/ItemDef.pm \
+  lib/Automake/Language.pm \
+  lib/Automake/Location.pm \
+  lib/Automake/Options.pm \
+  lib/Automake/Rule.pm \
+  lib/Automake/RuleDef.pm \
+  lib/Automake/Variable.pm \
+  lib/Automake/VarDef.pm \
+  lib/Automake/Version.pm \
+  lib/Automake/XFile.pm \
+  lib/Automake/Wrap.pm
 
-nodist_perllib_DATA = %D%/Config.pm
+nodist_perllib_DATA = lib/Automake/Config.pm
 CLEANFILES += $(nodist_perllib_DATA)
 
-%D%/Config.pm: %D%/Config.in Makefile
+lib/Automake/Config.pm: lib/Automake/Config.in Makefile
 	$(AM_V_at)rm -f $@ $@-t
-	$(AM_V_at)$(MKDIR_P) %D%
+	$(AM_V_at)$(MKDIR_P) lib/Automake
 	$(AM_V_GEN)in=Config.in \
-	  && $(do_subst) <$(srcdir)/%D%/Config.in >$@-t
+	  && $(do_subst) <$(srcdir)/lib/Automake/Config.in >$@-t
 	$(generated_file_finalize)
-EXTRA_DIST += %D%/Config.in
+EXTRA_DIST += lib/Automake/Config.in
 
 # vim: ft=automake noet
